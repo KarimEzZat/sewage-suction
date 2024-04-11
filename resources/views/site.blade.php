@@ -2,7 +2,7 @@
 
 @section('title')
 
-    <title>شركة وايت الرياض 0575322403 - وايت شفط صرف صحي بالرياض</title>
+    <title>شركة وايت الرياض 0575322403</title>
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
     <section class="home-banner-area">
         <div class="container">
             <div class="row fullscreen d-flex align-items-center">
-                <div class="mt-5 banner-content col-lg-8 col-md-12 justify-content-center ">
+                <div class="mt-5 banner-content col-lg-9 col-md-12 justify-content-center ">
                     <div class="me mt-5">شركة وايت الرياض</div>
                     <h1>{{ $companies->first()->name }}</h1>
                     <div class="designation mb-50">
@@ -66,12 +66,11 @@
                                 <!-- blog image -->
                                 @if(isset($article->image))
                                     <div class="blog-img">
-                                        <a href="{{ route('articles.show', $article->slug) }}">
+                                        <a href="{{route('articles.show', $article->slug)}}">
                                             <img src="{{ asset('assets/Articles/img/'. $article->image) }}"
                                                  class="img-fluid"
                                                  alt="شركة وايت الرياض - وايت صرف صحي بالرياض">
                                         </a>
-
                                         <!-- blog info date & writter -->
 
                                     </div>
@@ -99,7 +98,26 @@
     </section>
 
 
+    <section class="question-area section-gap" id="question">
+        <div class="container">
+            <div class="section-title mb-50">
+                <h2>اسئلة شائعة</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    @if(isset($questions))
+                        @foreach($questions as $question)
+                            <div class='content'>
+                                <h2 class="mb-3">{{ $question->questions }}</h2>
 
+                                <div>{!! $question->answer!!}</div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 @endsection

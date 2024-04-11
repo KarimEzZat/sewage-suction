@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\Articles\CreateArticleRequest;
 use App\Http\Requests\Articles\UpdateArticleRequest;
 use App\Models\Article;
-use Illuminate\Support\Str;
-use League\Flysystem\Adapter\NullAdapter;
 
 class ArticlesController extends Controller
 {
@@ -17,10 +13,10 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-       public function  __construct()
-{
-    $this->middleware('auth')->except('show');
-}
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
 
     public function index()
     {
@@ -41,7 +37,8 @@ class ArticlesController extends Controller
     }
 
 
-    public function slug($string, $separator = '-') {
+    public function slug($string, $separator = '-')
+    {
         if (is_null($string)) {
             return "";
         }
@@ -62,7 +59,7 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateArticleRequest $request)
@@ -86,20 +83,20 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Article $article)
     {
         //
-        // return view('blog', compact('article'));
+        return view('article', compact('article'));
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Article $article)
@@ -111,8 +108,8 @@ class ArticlesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateArticleRequest $request, Article $article)
@@ -121,7 +118,7 @@ class ArticlesController extends Controller
         $input = $request->all();
         $file = $request->file('image');
 
-        if ($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $name = preg_replace('/\s+/', '_', time() . '_' . $file->getClientOriginalName());
             $oldImage = 'assets/Articles/img/' . $article->image;
             if ($article->image != Null) {
@@ -140,7 +137,7 @@ class ArticlesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Article $article)

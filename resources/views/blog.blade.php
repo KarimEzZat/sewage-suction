@@ -2,7 +2,7 @@
 
 @section('title')
 
-    <title>{{ isset($article) ? $article->title : 'المدونة' }}شركة وايت الرياض 0575322403 - </title>
+    <title>شركة وايت الرياض 0575322403</title>
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="about-content col-lg-12">
                     <h1 class="text-white">
-                        {{ isset($article) ? $article->title : 'المقالات' }}
+                        شركة وايت الرياض - وايت شفط وتسليك مجاري بالرياض
                     </h1>
                     <p class="link-nav">
                             <span class="box transition">
@@ -26,52 +26,48 @@
 
     <section class="blog-area section-gap">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-8">
-                @if(isset($article))
+                @if(isset($articles))
+                    @foreach($articles as $article)
 
-                    <!--Start Single Blog -->
-                        <div class="single-blog mb-3">
-                            <div class="blog-img mb-3">
-                                <img src="{{ asset('assets/Articles/img/'. $article->image) }}" class="img-fluid"
-                                     alt="شركة وايت الرياض - وايت شفط صرف صحي بالرياض">
-                                <!--blog info date & writter -->
-                            </div>
-                            <!--blog header -->
-                            <div class="blog-content">
+                        <!-- Start Single Blog -->
+                            <article class="single-blog mb-3">
+                                <!-- blog image -->
+                                @if(isset($article->image))
+                                    <div class="blog-img">
+                                        <a href="{{route('articles.show', $article->slug)}}">
+                                            <img src="{{ asset('assets/Articles/img/'. $article->image) }}"
+                                                 class="img-fluid"
+                                                 alt="شركة وايت الرياض - وايت صرف صحي بالرياض">
+                                        </a>
+                                        <!-- blog info date & writter -->
 
-                                <div>{!! $article->description  !!}</div>
-                            </div>
-                        </div>
-                        <!--End Single Blog -->
-                    @endif
-                </div>
-            </div>
+                                    </div>
+                            @endif
 
-        </div>
-    </section>
+                            <!-- blog header -->
+                                <div class="blog-content">
+                                    <h2 class="my-3">
+                                        {{ $article->title }}
+                                    </h2>
+                                    <div>{!! $article->description !!}</div>
+                                </div>
+                            </article>
+                            <!-- End Single Blog -->
 
-
-    <section class="question-area section-gap" id="question">
-        <div class="container">
-            <div class="section-title mb-50">
-                <h2>اسئلة شائعة</h2>
-            </div>
-            <div class="row">
-                <div class="col-lg-8">
-                    @if(isset($questions))
-                        @foreach($questions as $question)
-                            <div class='content'>
-                                <h2 class="mb-3">{{ $question->questions }}</h2>
-
-                                <div>{!! $question->answer!!}</div>
-                            </div>
                         @endforeach
+
                     @endif
                 </div>
+
             </div>
+
+
         </div>
     </section>
+
+
+
 
 @endsection

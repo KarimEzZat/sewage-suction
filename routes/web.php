@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CompanyController;
@@ -25,6 +26,8 @@ use Spatie\Sitemap\SitemapGenerator;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/blog-page', [WelcomeController::class, 'blogPage'])->name('blog.articles');
+Route::resource('articles', ArticlesController::class);
 
 Auth::routes([
     'register' => false, // Registration Routes...
@@ -55,7 +58,7 @@ Route::middleware(['auth'])->group(function (){
 
     Route::resource('questions', QuestionsController::class);
 
-    Route::resource('articles', ArticlesController::class);
+
 
 
     Route::get('logout', [LoginController::class, 'logout']);

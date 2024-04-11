@@ -14,6 +14,10 @@ class WelcomeController extends Controller
     //
     public function index()
     {
-        return view('site')->with(['contents' => Content::all(), 'companies' => Company::all(),'services' => Service::latest()->get(),'faqs' => Faq::latest()->get(), 'questions' => Question::latest()->get(), 'articles' => Article::latest()->get()]);
+        return view('site')->with(['contents' => Content::all(), 'companies' => Company::all(),'services' => Service::latest()->get(),'faqs' => Faq::latest()->get(), 'questions' => Question::latest()->get()]);
+    }
+
+    public function blogPage() {
+        return view('blog')->with(['articles' => Article::latest()->get()]);
     }
 }

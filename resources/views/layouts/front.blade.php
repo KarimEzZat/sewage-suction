@@ -33,7 +33,6 @@
           content="شركة وايت الرياض - شركة وايت شفط صرف صحي بالرياض"/>
     <meta name="twitter:image" content="{{asset('assets/Images/'.$companies->first()->photo)}}"/>
     <!-- Meta Keyword -->
-    <meta name="keywords" content="{{$companies->first()->keywords}}">
 
     <!-- meta character set -->
     <meta charset="UTF-8">
@@ -65,12 +64,36 @@
 
 <!-- Start Header Area -->
 <header id="header" class="header_area blog-header">
-    <div class="container py-3">
-        <div class="row align-items-center justify-content-between">
-            <div class="logo_area">
-                <!-- Logo image -->
-                <a href="{{ route('welcome') }}"><img src="{{asset('public/front-end/assets/img/logo.png')}}"
-                                                      alt="شركة وايت الرياض لشفط الصرف الصحي وتسليك المجاري"></a>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="logo_area">
+                        <!-- Logo image -->
+                        <a href="{{ route('welcome') }}"><img src="{{asset('public/front-end/assets/img/logo.png')}}"
+                                                              alt="شركة وايت الرياض لشفط الصرف الصحي وتسليك المجاري"></a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse main-menu-item justify-content-end"
+                         id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ route('welcome') }}">الرئيسية</a>
+                            </li>
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ route('blog.articles') }}">المدونة</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#footer">اتصل بنا</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
         </div>
     </div>
@@ -82,24 +105,26 @@
 @yield('content')
 
 
-<section class="faqs-area section-gap" id="faqs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul>
-                    @if(isset($faqs))
-                        @foreach($faqs as $faq)
-                            <li>
-                                <h2 class="mb-2">{{ $faq->tag }}</h2>
-                            </li>
+@if(isset($article))
+    <section class="faqs-area section-gap" id="faqs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul>
+                        @if(isset($faqs))
+                            @foreach($faqs as $faq)
+                                <li>
+                                    <h2 class="mb-2">{{ $faq->tag }}</h2>
+                                </li>
 
-                        @endforeach
-                    @endif
-                </ul>
+                            @endforeach
+                        @endif
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+@endif
 
 
 <!-- start footer Area -->
